@@ -10,13 +10,14 @@ const ExpenseItem = ({ date, title, price: exPrice }) => {
   // 원화 표기법으로 변환
   const formattedPrice = new Intl.NumberFormat('ko-KR').format(exPrice);
 
+ // 이벤트 핸들러 밖에서는 docu.qs 불가능
  // 이벤트 핸들러 선언
  const clickHandler = e => {
+   // 이 곳은 DOM이 형성된 시점(버튼이 그려진 이후)이기 때문에 여기서는 docu.qs이 가능
+   console.log(e.target.previousElementSibling.firstElementChild.textContent);
   console.log('클릭함!');
-  console.log(e.target.previousElementSibling.firstElementChild.textContent);
 
-  // 이벤트 핸들러는 버튼이 그려진 이후기 때문에 다 잡아올 수 있음
-  // const $price = document.querySelectorAll('.expense-item__price');
+  // const $price = document.querySelectorAll('.expense-item__price'); // 가능
   // console.log($price);
 };
 
