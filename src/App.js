@@ -1,6 +1,8 @@
 import "./App.css";
 import React from "react";
-import ExpenseItem from "./components/expenses/ExpenseItem";
+import Greet from "./components/Greet";
+import ExpenseList from "./components/expenses/ExpenseList";
+
 
 // 서버에서 데이터를 받아오는 곳
 const App = () => {
@@ -22,23 +24,10 @@ const App = () => {
       date: new Date(2024, 6 - 1, 12),
     },
   ];
+
   return (
     <>
-      <ExpenseItem
-        title={expenses[0].title}
-        price={expenses[0].price}
-        date={expenses[0].date}
-      />
-      <ExpenseItem
-        title={expenses[1].title}
-        price={expenses[1].price}
-        date={expenses[1].date}
-      />
-      <ExpenseItem
-        title={expenses[2].title}
-        price={expenses[2].price}
-        date={expenses[2].date}
-      />
+      <ExpenseList expenses={expenses} />
     </>
   );
 };

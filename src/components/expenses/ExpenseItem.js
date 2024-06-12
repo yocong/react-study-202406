@@ -1,9 +1,16 @@
 import React from 'react'
 import './ExpenseItem.css';
 import ExpenseDate from './ExpenseDate';
+import Card from '../UI/Card';
 
-// 디스트럭쳐링으로 데이터 받아옴
 const ExpenseItem = ({ date, title, price: exPrice }) => {
+
+  // console.log('props: ', aaa);
+
+  // 변수 선언
+  // const expenseDate = date;
+  // const expenseTitle = title;
+  // const expensePrice = exPrice;
 
   // 함수 선언
 
@@ -25,13 +32,13 @@ const ExpenseItem = ({ date, title, price: exPrice }) => {
   const formattedPrice = new Intl.NumberFormat('ko-KR').format(exPrice);
 
   return (
-    <div className='expense-item'>
-      <ExpenseDate exDate={date} />
-      <div className='expense-item__description'>
-        <h2>{title}</h2>
-        <div className='expense-item__price'>{formattedPrice}원</div>
-      </div>
-    </div>
+      <Card className='expense-item'>
+        <ExpenseDate exDate={date} />
+        <div className='expense-item__description'>
+          <h2>{title}</h2>
+          <div className='expense-item__price'>{formattedPrice}원</div>
+        </div>
+      </Card>
   )
 }
 
