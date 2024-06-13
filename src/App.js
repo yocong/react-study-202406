@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
-import Greet from "./components/Greet";
 import ExpenseList from "./components/expenses/ExpenseList";
+import Counter from "./components/practice/Counter";
 
 
 // 서버에서 데이터를 받아오는 곳
@@ -27,6 +27,7 @@ const App = () => {
 
   return (
     <>
+      <Counter />
       <ExpenseList expenses={expenses} />
     </>
   );
