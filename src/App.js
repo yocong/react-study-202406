@@ -2,8 +2,6 @@ import "./App.css";
 import React from "react";
 import ExpenseList from "./components/expenses/ExpenseList";
 import NewExpense from "./components/new-expense/NewExpense";
-import CheckBoxStyle from "./components/practice/CheckBoxStyle";
-
 
 // 서버에서 데이터를 받아오는 곳
 const App = () => {
@@ -17,12 +15,22 @@ const App = () => {
     {
       title: "족발먹음",
       price: 40000,
-      date: new Date(2024, 6 - 1, 7),
+      date: new Date(2023, 12 - 1, 7),
     },
     {
       title: "헬스장등록",
       price: 300000,
       date: new Date(2024, 6 - 1, 12),
+    },
+    {
+      title: "파파존스",
+      price: 40000,
+      date: new Date(2022, 3 - 1, 4),
+    },
+    {
+      title: "파리채",
+      price: 1500,
+      date: new Date(2023, 1 - 1, 2),
     },
   ];
 
