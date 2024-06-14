@@ -49,7 +49,7 @@ const App = () => {
     // [...expenseList, userInput] : 복사본에 userInput 추가
     setExpenseList([...expenseList, userInput]);
 
-    console.log(expenseList);
+    // console.log(expenseList);
   }
 
   return (
