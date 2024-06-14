@@ -1,13 +1,40 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './CourseInput.css';
 import Button from '../UI/Button';
 
-const CourseInput = () => {
+const CourseInput = ({ onAdd }) => {
+
+  // 입력값 상태관리
+  const [enteredText, setEnteredText] = useState('');
+
+  // 입력값 바뀔 때 이벤트 핸들러
+  const goalAddHandler = e => {
+    setEnteredText(e.target.value);
+  }
+
+  // 폼 전송 이벤트 핸들러
+  const formSubmitHandler = e => {
+    e.preventDefault();
+
+    const newGoalObject = {
+      id: Math.random().toString(),
+      text: enteredText
+    };
+    console.log(newGoalObject);
+
+    onAdd(newGoalObject);
+
+    setEnteredText('');
+  }
+
   return (
-    <form>
+    <form onSubmit={formSubmitHandler}>
       <div className="form-control">
         <label>나의 목표</label>
-        <input type="text" />
+        <input type="text"
+        value={enteredText}
+        onChange={goalAddHandler}
+        />
       </div>
       <Button type="submit">목표 추가하기</Button>
     </form>
