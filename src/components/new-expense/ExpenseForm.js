@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ExpenseForm.css';
 
-const ExpenseForm = ({ onAdd }) => {
+const ExpenseForm = ({ onAdd, onCancel}) => {
 
   // 1. 입력칸에 있는 3개의 값을 각각의 상태값으로 관리 (단일 값으로 관리)
   // const [title, setTitle] = useState('');
@@ -116,6 +116,7 @@ const ExpenseForm = ({ onAdd }) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={onCancel}>Cancel</button>;
         <button type="submit">Add Expense</button>
       </div>
     </form>
