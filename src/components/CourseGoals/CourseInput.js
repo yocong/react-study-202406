@@ -22,8 +22,10 @@ const CourseInput = ({ onAdd }) => {
     };
     console.log(newGoalObject);
 
+    // 부모 컴포넌트로 데이터 보내기
     onAdd(newGoalObject);
 
+    // input 비우기
     setEnteredText('');
   }
 
