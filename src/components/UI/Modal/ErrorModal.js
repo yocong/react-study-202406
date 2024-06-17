@@ -44,7 +44,7 @@ const ErrorModal = ({ title, message, onClose }) => {
 {
         ReactDOM.createPortal(
           <ModalOverlay title={title} message={message} onClose={onClose} />
-          , document.getElementById('overay-root')
+          , document.getElementById('overlay-root')
         )
       }
     </>
