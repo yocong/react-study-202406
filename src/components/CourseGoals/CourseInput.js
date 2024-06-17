@@ -4,17 +4,33 @@ import Button from '../UI/Button';
 
 const CourseInput = ({ onAdd }) => {
 
-  // 입력값 상태관리
+  // 목표 input에 입력한 값
   const [enteredText, setEnteredText] = useState('');
+
+  // 입력값 검증을 통과했는지 여부를 상태관리
+  const [isValid, setIsValid] = useState(true);
 
   // 입력값 바뀔 때 이벤트 핸들러
   const goalAddHandler = e => {
-    setEnteredText(e.target.value);
-  }
+
+    const inputValue = e.target.value;
+
+    // 입력값 검증
+    if (inputValue.trim().length > 0) {
+      setIsValid(true);
+    }
+    setEnteredText(inputValue);
+
+  };
 
   // 폼 전송 이벤트 핸들러
   const formSubmitHandler = e => {
     e.preventDefault();
+
+    if (enteredText.trim().length === 0) {
+      setIsValid(false);
+      return;
+    }
 
     const newGoalObject = {
       id: Math.random().toString(),
@@ -34,8 +50,12 @@ const CourseInput = ({ onAdd }) => {
       <div className="form-control">
         <label>나의 목표</label>
         <input type="text"
-        value={enteredText}
         onChange={goalAddHandler}
+        value={enteredText}
+        style={{
+          backgroundColor: isValid ? 'transparent' : 'salmon',
+          borderColor: isValid ? 'black' : 'red',
+        }}
         />
       </div>
       <Button type="submit">목표 추가하기</Button>
