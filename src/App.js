@@ -44,7 +44,7 @@ const App = () => {
     // goals.splice(goals.findIndex(g => g.id === id), 1);
 
     // 3. filter, 일치하지 않은 애들은 필터 => 즉, 일치하는 애들만 선택되어서 삭제
-    setGoals(goals.filter(g => g.id != id));
+    setGoals(goals.filter(g => g.id !== id));
 
 
   };
