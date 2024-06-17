@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import Card from '../Card';
 import Button from '../Button';
 import styles from './ErrorModal.module.css';
+import Portal from '../Portal/Portal';
 
 const BackDrop = ({ onClose }) => {
   return (
@@ -34,19 +35,15 @@ const ModalOverlay = ({ title, message, onClose }) => {
 const ErrorModal = ({ title, message, onClose }) => {
   return (
     <>
-      {
-        ReactDOM.createPortal(
-          <BackDrop onClose={onClose} />
-          , document.getElementById('backdrop-root')
-        )
-      }
+      <Portal destId='backdrop-root'>
+        <BackDrop onClose={onClose} />
+      </Portal>
 
-{
-        ReactDOM.createPortal(
-          <ModalOverlay title={title} message={message} onClose={onClose} />
-          , document.getElementById('overlay-root')
-        )
-      }
+
+      <Portal destId='overlay-root'>
+        <ModalOverlay title={title} message={message} onClose={onClose} />
+      </Portal>
+
     </>
   );
 };
