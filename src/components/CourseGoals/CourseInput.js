@@ -44,6 +44,27 @@ const CourseInput = ({ onAdd }) => {
     setEnteredText(inputValue);
   };
 
+  const foo = () => {
+
+    const arr = [1,2,3,4,5,6,700000000];
+
+    // 렌더링이 된 요소
+    const $ul = document.querySelector('ul.abc');
+
+    // 중간 가상 DOM 생성
+    const $div = document.createDocumentFragment();
+
+    arr.forEach(n => {
+      // 아직 렌더링이 되지 않은 요소 : virtual DOM
+      const $li = document.createElement('li');
+      $li.textContent = n;
+      // 렌더링된 곳에 렌더링되지않은 요소를 추가 : 성능상 좋지 않다.
+      $div.appendChild($li);
+    });
+
+    $ul.appendChild($div);
+  };
+
   return (
     <form onSubmit={formSubmitHandler}>
       <div className={`${formControl} ${!isValid ? invalid : ''}`}>
