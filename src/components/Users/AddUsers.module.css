@@ -1,3 +1,7 @@
+body {
+  background: white !important;
+}
+
 .input {
   margin: 2rem auto;
   padding: 1rem;
