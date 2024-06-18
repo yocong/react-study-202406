@@ -1,21 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import Card from '../UI/Card';
-import styles from './Login.module.css';
-import Button from '../UI/Button';
+import Card from "../UI/Card";
+import styles from "./Login.module.css";
+import Button from "../UI/Button";
 
 const Login = ({ onLogin }) => {
-  const [enteredEmail, setEnteredEmail] = useState('');
+  // 사용자가 입력한 이메일을 상태관리
+  const [enteredEmail, setEnteredEmail] = useState("");
+  // 이메일 입력값이 정상인지 유무 확인
   const [emailIsValid, setEmailIsValid] = useState();
-  const [enteredPassword, setEnteredPassword] = useState('');
+  // 사용자가 입력한 패스워드를 상태관리
+  const [enteredPassword, setEnteredPassword] = useState("");
+  // 패스워드 입력값이 정상인지 유무 확인
   const [passwordIsValid, setPasswordIsValid] = useState();
+
+  // 이메일, 패스워드가 둘 다 정상인지 확인
   const [formIsValid, setFormIsValid] = useState(false);
 
   const emailChangeHandler = (e) => {
     setEnteredEmail(e.target.value);
 
     setFormIsValid(
-      e.target.value.includes('@') && enteredPassword.trim().length > 6
+      e.target.value.includes("@") && enteredPassword.trim().length > 6
     );
   };
 
@@ -23,12 +29,12 @@ const Login = ({ onLogin }) => {
     setEnteredPassword(e.target.value);
 
     setFormIsValid(
-      e.target.value.trim().length > 6 && enteredEmail.includes('@')
+      e.target.value.trim().length > 6 && enteredEmail.includes("@")
     );
   };
 
   const validateEmailHandler = () => {
-    setEmailIsValid(enteredEmail.includes('@'));
+    setEmailIsValid(enteredEmail.includes("@"));
   };
 
   const validatePasswordHandler = () => {
@@ -37,6 +43,7 @@ const Login = ({ onLogin }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    // 어떤 onLogin 함수에 enteredEmail, enteredPassword 전달
     onLogin(enteredEmail, enteredPassword);
   };
 
@@ -45,7 +52,7 @@ const Login = ({ onLogin }) => {
       <form onSubmit={submitHandler}>
         <div
           className={`${styles.control} ${
-            emailIsValid === false ? styles.invalid : ''
+            emailIsValid === false ? styles.invalid : ""
           }`}
         >
           <label htmlFor="email">E-Mail</label>
@@ -59,7 +66,7 @@ const Login = ({ onLogin }) => {
         </div>
         <div
           className={`${styles.control} ${
-            passwordIsValid === false ? styles.invalid : ''
+            passwordIsValid === false ? styles.invalid : ""
           }`}
         >
           <label htmlFor="password">Password</label>
@@ -72,7 +79,10 @@ const Login = ({ onLogin }) => {
           />
         </div>
         <div className={styles.actions}>
-          <Button type="submit" className={styles.btn} disabled={!formIsValid}>
+          <Button
+          type="submit"
+          className={styles.btn}
+          disabled={!formIsValid}>
             Login
           </Button>
         </div>

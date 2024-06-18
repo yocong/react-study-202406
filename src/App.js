@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import './App.css';
 import MainHeader from './components/SideEffect/MainHeader';
 import Home from './components/SideEffect/Home';
+import Login from './components/SideEffect/Login';
 
 
 const App = () => {
@@ -10,8 +11,8 @@ const App = () => {
     <>
       <MainHeader />
       <main>
-        <Home />
-        {/* {<Login />} */}
+        {/* <Home /> */}
+        {<Login />}
       </main>
     </>
   );
