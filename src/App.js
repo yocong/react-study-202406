@@ -20,9 +20,8 @@ const App = () => {
   // }
 
   // side effect 처리를 위한 함수
-  // useEffect는 기본적으로 컴포넌트 렌더링시 단 한번만 호출
+  //  ` 기본적으로 컴포넌트 렌더링시 단 한번만 호출
   useEffect(() => {
-    console.log('로그인 검사 수행!');
     const storedLoginFlag = localStorage.getItem('login-flag');
     if (storedLoginFlag === '1') {
       setIsloggedIn(true);
@@ -31,6 +30,8 @@ const App = () => {
 
   // 서버 통신은 중앙집중 관리가 중요함
   const loginHandler = (email, password) => {
+    console.log('로그인 검사 수행!');
+
     // 로그인의 증거로 클라이언트에 1이라는 숫자를 기록
     localStorage.setItem("login-flag", "1");
     setIsloggedIn(true);
@@ -41,6 +42,8 @@ const App = () => {
     setIsloggedIn(false);
   }
 
+
+  
   return (
     <>
       <MainHeader onLogout={logoutHandler}/>

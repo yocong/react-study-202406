@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Card from "../UI/Card";
 import styles from "./Login.module.css";
 import Button from "../UI/Button";
 
 const Login = ({ onLogin }) => {
+  console.log('렌더링 수행!');
+
   // 사용자가 입력한 이메일을 상태관리
   const [enteredEmail, setEnteredEmail] = useState("");
   // 이메일 입력값이 정상인지 유무 확인
@@ -19,18 +21,10 @@ const Login = ({ onLogin }) => {
 
   const emailChangeHandler = (e) => {
     setEnteredEmail(e.target.value);
-
-    setFormIsValid(
-      e.target.value.includes("@") && enteredPassword.trim().length > 6
-    );
   };
 
   const passwordChangeHandler = (e) => {
     setEnteredPassword(e.target.value);
-
-    setFormIsValid(
-      e.target.value.trim().length > 6 && enteredEmail.includes("@")
-    );
   };
 
   const validateEmailHandler = () => {
@@ -48,6 +42,18 @@ const Login = ({ onLogin }) => {
     // App.js에서 받은 로그인핸들러 호출
     onLogin(enteredEmail, enteredPassword);
   };
+
+  // useEffect를 통한 로그인 검사
+  // []을 비워두면 최초 1회만 실행
+  // [enteredEmail, enteredPassword]
+  // -> enteredEmail, enteredPassword 값이 변할 때만 useEffect를 실행하겠음~
+  useEffect(() => {
+    console.log('useEffect call in Login.js');
+    setFormIsValid(
+      enteredPassword.trim().length > 6 && enteredEmail.includes('@')
+    );
+  }, [enteredEmail, enteredPassword]);
+
 
   return (
     <Card className={styles.login}>
