@@ -41,9 +41,11 @@ const Login = ({ onLogin }) => {
     setPasswordIsValid(enteredPassword.trim().length > 6);
   };
 
+  // 로그인 버튼을 눌렀을 때 이벤트 핸들러
   const submitHandler = (e) => {
     e.preventDefault();
     // 어떤 onLogin 함수에 enteredEmail, enteredPassword 전달
+    // App.js에서 받은 로그인핸들러 호출
     onLogin(enteredEmail, enteredPassword);
   };
 
