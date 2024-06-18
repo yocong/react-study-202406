@@ -5,7 +5,6 @@ import styles from "./Login.module.css";
 import Button from "../UI/Button";
 
 const Login = ({ onLogin }) => {
-  console.log('렌더링 수행!');
 
   // 사용자가 입력한 이메일을 상태관리
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -48,12 +47,27 @@ const Login = ({ onLogin }) => {
   // [enteredEmail, enteredPassword]
   // -> enteredEmail, enteredPassword 값이 변할 때만 useEffect를 실행하겠음~
   useEffect(() => {
-    console.log('useEffect call in Login.js');
-    setFormIsValid(
-      enteredPassword.trim().length > 6 && enteredEmail.includes('@')
-    );
+
+    // 디바운싱함수에 넣어줌
+    // clearTimeout까지 해줌으로써
+    // 마지막에 입력한 값 1번만 1초뒤에 검사함
+    const timer = setTimeout(() => {
+      console.log('useEffect call in Login.js');
+      setFormIsValid(
+        enteredPassword.trim().length > 6 && enteredEmail.includes('@')
+      );
+    }, 1000);
+
+
+
+    // clean up함수는 컴포넌트가 업데이트되거나 사라지기 전에 실행
+    return () => {
+      // console.log('clean up: ', enteredEmail);
+      clearTimeout(timer);
+    };
   }, [enteredEmail, enteredPassword]);
 
+  // console.log('render: ', enteredEmail);
 
   return (
     <Card className={styles.login}>
