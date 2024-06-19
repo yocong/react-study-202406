@@ -1,36 +1,39 @@
-import React from 'react'
+import React from 'react';
 import styles from './Navigation.module.css';
+import AuthContext from '../store/auth-context';
 
-const Navigation = ({ onLogout, isLoggedIn }) => {
+const Navigation = ({ onLogout }) => {
 
-  let renderPage = (
+  const loginPage = (
     <>
       <li>
         <a href="/">MyPage</a>
       </li>
-
       <li>
         <a href="/">Admin</a>
       </li>
-
       <li>
         <button onClick={onLogout}>Logout</button>
       </li>
     </>
-
   );
 
-  if (!isLoggedIn) {
-    renderPage = <li><button>Sign Up</button></li>
-  }
+  const anonymousPage = <li><button>Sign Up</button></li>
 
   return (
-    <nav className={styles.nav}>
-      <ul>
-        {renderPage}
-      </ul>
-    </nav>
-  )
-}
+    <AuthContext.Consumer>
+      {({ isLoggedIn }) => {
+        // console.log(context);
+        return (
+          <nav className={styles.nav}>
+            <ul>
+              {isLoggedIn ? loginPage : anonymousPage}
+            </ul>
+          </nav>
+        );
+      }}
+    </AuthContext.Consumer>
+  );
+};
 
-export default Navigation
+export default Navigation;
