@@ -6,7 +6,8 @@ import React from "react"
 // 데이터 값은 타입 기본값을 명시
 const AuthContext = React.createContext(
   {
-    isLoggedIn: false
+    isLoggedIn: false,
+    onLogout: () => {}, // 타입 기본데이터를 넣으면 에디터에서 자동완성이
   }
 );
 
