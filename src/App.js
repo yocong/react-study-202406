@@ -37,6 +37,7 @@ const App = () => {
     setIsloggedIn(true);
   };
 
+  // 로그아웃 실행함수
   const logoutHandler = () => {
     localStorage.removeItem('login-flag');
     setIsloggedIn(false);
@@ -46,7 +47,7 @@ const App = () => {
   
   return (
     <>
-      <MainHeader onLogout={logoutHandler}/>
+      <MainHeader isLoggedIn={loginHandler} onLogout={logoutHandler}/>
       <main>
         {isLoggedIn && <Home />}
         {!isLoggedIn && <Login onLogin={loginHandler} />}
