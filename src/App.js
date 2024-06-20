@@ -1,14 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import "./App.css";
 
-// bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-import TodoTemplate from './components/Todo/TodoTemplate';
-
-
 const App = () => {
-  return <TodoTemplate />;
+  return (
+    <>
+      <Player />
+      <div id="challenges"></div>
+    </>
+  );
 };
 
 export default App
