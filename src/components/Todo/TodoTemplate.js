@@ -53,10 +53,16 @@ const TodoTemplate = () => {
       setTodoList(copyTodoList);
     }
 
+    // 남은 할 일 개수 세기
+    const countRestTodo = todoList.filter(todo => !todo.done).length;
+
     return (
         <div className='TodoTemplate'>
-            <TodoHeader todos={todoList}/>
-            <TodoMain todos={todoList} onRemove={removeTodo} onCheck={checkTodo}/>
+            <TodoHeader count={countRestTodo}/>
+            <TodoMain
+            todos={todoList}
+            onRemove={removeTodo}
+            onCheck={checkTodo}/>
             <TodoInput onAdd={addTodo} />
         </div>
     );

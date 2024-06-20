@@ -1,7 +1,7 @@
 import React from 'react';
 import './scss/TodoHeader.scss';
 
-const TodoHeader = ({ todos }) => {
+const TodoHeader = ({ count }) => {
   
 
   // 년, 월, 일 구하기
@@ -12,8 +12,7 @@ const TodoHeader = ({ todos }) => {
   const week = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
   let day = week[date.getDay()];
 
-  // 할 일 개수 구하기
-  const count = todos.length;
+
   return (
     <header>
       <h1>{formattedDate}</h1>
