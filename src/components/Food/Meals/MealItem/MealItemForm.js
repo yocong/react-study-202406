@@ -6,8 +6,18 @@ const MealItemForm = (props) => {
   return (
     <form className={styles.form}>
       {/* <Input
+        label='취미' inputAttr={{
+          id: 'amount_' + props.id,
+          type: 'checkbox',
+          min: '1',
+          max: '5',
+          step: '1',
+          defaultValue: '1',
+        }}
+      /> */}
+      <Input
         label='수량'
-        input={{
+        inputAttr={{
           id: 'amount_' + props.id,
           type: 'number',
           min: '1',
@@ -15,7 +25,7 @@ const MealItemForm = (props) => {
           step: '1',
           defaultValue: '1',
         }}
-      /> */}
+      />
       <button>담기</button>
     </form>
   );
