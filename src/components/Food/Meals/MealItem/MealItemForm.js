@@ -5,16 +5,6 @@ import styles from './MealItemForm.module.scss';
 const MealItemForm = (props) => {
   return (
     <form className={styles.form}>
-      {/* <Input
-        label='취미' inputAttr={{
-          id: 'amount_' + props.id,
-          type: 'checkbox',
-          min: '1',
-          max: '5',
-          step: '1',
-          defaultValue: '1',
-        }}
-      /> */}
       <Input
         label='수량'
         inputAttr={{
