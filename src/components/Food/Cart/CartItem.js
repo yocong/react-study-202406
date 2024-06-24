@@ -7,9 +7,9 @@ import CartContext from '../../store/cart-context';
 // 장바구니에서 하나의 상품 정보
 const CartItem = ({ cart }) => {
 
-  const { addItem } = useContext(CartContext);
+  const { addItem, removeItem } = useContext(CartContext);
 
-  const { name, price, amount } = cart;
+  const { id, name, price, amount } = cart;
 
   const {
     'cart-item': cartItem,
@@ -31,6 +31,10 @@ const CartItem = ({ cart }) => {
     addItem(item);
   };
 
+  const cartRemoveHandler = e => {
+    removeItem(id);
+  }
+
   return (
     <li className={cartItem}>
       <div>
@@ -41,7 +45,7 @@ const CartItem = ({ cart }) => {
         </div>
       </div>
       <div className={actions}>
-        <button>−</button>
+        <button onClick={cartRemoveHandler}>−</button>
         <button onClick={cartAddHandler}>+</button>
       </div>
     </li>

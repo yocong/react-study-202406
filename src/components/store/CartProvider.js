@@ -53,7 +53,27 @@ const cartReducer = (state, action) => {
     }; // 새로운 상태
   } else if (action.type === 'REMOVE') { // 장바구니 제거
 
-    return null; // 새로운 상태
+    // 기존 장바구니 배열 사본
+    const existingItems = [...state.items];
+    // 제거 or 수량 감소 대상의 인덱스 탐색
+    const index = existingItems.findIndex(item => item.id === action.value);
+
+    let updatedItems;
+    // 기존에 장바구니의 해당 아이템의 수량이 1인 경우 - 장바구니 배열에서 제거
+    if (index !== -1 && existingItems[index].amount === 1) {
+      updatedItems = existingItems.filter(item => item.id !== action.value);
+    } else { // 1보다 큰 경우 - 수량을 1개 내려줌
+      existingItems[index].amount--;
+      updatedItems = [...existingItems];
+    }
+
+    // 총액 계산
+    const updatedPrice = state.totalPrice - existingItems[index].price;
+
+    return {
+      items: updatedItems,
+      totalPrice: updatedPrice,
+    }; // 새로운 상태
   } 
   return defaultState; // 새로운 상태
 };
@@ -78,6 +98,15 @@ const CartProvider = ({ children }) => {
     });
   }
 
+
+  const removeItemHandler = id => {
+    dispatchCartAction({
+      type: 'REMOVE',
+      value: id
+    });
+  }
+
+
   // Provider가 실제로 관리할 상태들의 구체적인 내용들
   // context에 있는 껍데기를 provider의 리듀서에서 중앙상태관리하고 여기에 실제 관리내용을 적음
   const cartContext = {
@@ -85,7 +114,7 @@ const CartProvider = ({ children }) => {
     totalPrice: cartState.totalPrice, // 총액 상태값
     totalSelect: cartState.totalSelect,
     addItem: addItemHandler, // 상태를 업데이트하는 함수
-    removeItem: id => {}, // 상태를 업데이트하는 함수
+    removeItem: removeItemHandler, // 상태를 업데이트하는 함수
   };
 
   return <CartContext.Provider value={cartContext}>{children}</CartContext.Provider>;
