@@ -5,7 +5,9 @@ import CartContext from "../../store/cart-context";
 
 const HeaderCartButton = ({ onShow }) => {
 
-  const { totalSelect } = useContext(CartContext);
+  const { totalSelect, cartItems  } = useContext(CartContext);
+
+  const numberOfCart = cartItems.reduce((accum, current) => accum + current.amount, 0);
 
   const {button, icon, badge} = styles;
 
@@ -15,7 +17,7 @@ const HeaderCartButton = ({ onShow }) => {
         <CartIcon />
       </span>
       <span>My Cart</span>
-      <span className={badge}>{totalSelect}</span>
+      <span className={badge}>{numberOfCart}</span>
     </button>
   );
 };
