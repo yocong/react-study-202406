@@ -4,17 +4,19 @@ import Products from './components/RouteExample/pages/Products';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './components/RouteExample/layout/RootLayout';
 import ErrorPage from './components/RouteExample/pages/ErrorPage';
+import ProductDetail from './components/RouteExample/pages/ProductDetail';
 
 // 라우터 설정
 const router = createBrowserRouter([
 
   {
-    path: '/base',
+    path: '/',
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { path: '', element: <Home /> },
-      { path: 'products', element: <Products /> }
+      { index: true, element: <Home /> },
+      { path: 'products', element: <Products /> },
+      { path: 'products/:prodId/page/:pageNo', element: <ProductDetail /> },
     ]
   },
 
