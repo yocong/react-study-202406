@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useLoaderData } from 'react-router-dom';
+import React from 'react'
+import { useLoaderData, json } from 'react-router-dom';
 import EventList from '../components/EventList';
-import EventsNavigation from '../layout/EventNavigation';
 
 
 const Events = () => {
@@ -27,8 +26,8 @@ export const loader = async () => {
 
   if (!response.ok) {
     const errorText = await response.text(); // 서버가 내려준 에러내용
-    throw new Response(
-      JSON.stringify({ message: errorText }),
+    throw json( // throw new Response -> throw json : stringify 안해도됨
+      { message: errorText },
       {
         status: response.status
       }
