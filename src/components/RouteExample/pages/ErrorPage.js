@@ -9,7 +9,7 @@ const ErrorPage = () => {
   const error = useRouteError();
 
   // json에 있는 것을 화면에 렌더링해주기 위해 파싱
-  let errorMessage;
+  let errorMessage = '서버와의 연결이 원활하지 않습니다.';
 
   if (error.status === 400) {
     errorMessage = JSON.parse(error.data).message;

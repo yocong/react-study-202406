@@ -23,10 +23,10 @@ export default Events
 // loader를 app.js로부터 아웃소싱
 export const loader = async () => {
 
-  const response = await fetch('http://localhost:8282/events?sort=title');
+  const response = await fetch('http://localhost:8282/events?sort=date');
 
   if (!response.ok) {
-    const errorText = await response.text();
+    const errorText = await response.text(); // 서버가 내려준 에러내용
     throw new Response(
       JSON.stringify({ message: errorText }),
       {
