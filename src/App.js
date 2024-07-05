@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './components/RouteExample/layout/RootLayout';
 import ErrorPage from './components/RouteExample/pages/ErrorPage';
 import Events, { loader as eventListLoader } from './components/RouteExample/pages/Events';
-import EventDetail, { loader as eventDetailLoader } from './components/RouteExample/pages/EventDetail';
+import EventDetail, { loader as eventDetailLoader, action as deleteAction } from './components/RouteExample/pages/EventDetail';
 import EventLayout from './components/RouteExample/layout/EventLayout';
 import NewEvent, { action as saveAction } from './components/RouteExample/pages/NewEvent';
 import EditPage from './components/RouteExample/pages/EditPage';
@@ -38,7 +38,11 @@ const router = createBrowserRouter([
             // 해결법 -> loader에게 id부여 후 EventDetail에서 loader 재설정
             id: 'event-detail',
             children: [
-              { index: true, element: <EventDetail />},
+              { 
+                index: true, 
+                element: <EventDetail />,
+                action: deleteAction
+               },
               { path: 'edit', element: <EditPage />},
             ]
           },
