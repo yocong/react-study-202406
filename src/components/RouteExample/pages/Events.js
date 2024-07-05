@@ -27,11 +27,15 @@ const Events = () => {
     setLoading(true);
 
     const response = await fetch(`http://localhost:8282/events/page/${currentPage}?sort=date`);
-    const events = await response.json();
+    const loadedEvents = await response.json();
 
-    setEvents(events);
+    // 기존 것에 추가로 달아줌
+    const updatedEvents = [...events, ...loadedEvents];
+    setEvents(updatedEvents);
     // 데이터가 들어오면 false 바뀌면서 스켈레톤 사라짐
     setLoading(false);
+    // 로딩이 끝나면 페이지번호를 1 늘려놓는다.
+    setCurrentPage(prevPage => prevPage + 1);
     console.log('end loading');
   };
 
@@ -58,7 +62,7 @@ const Events = () => {
     
     return () => {
       window.removeEventListener('scroll', scrollHandler);
-      scrollHandler.cancel(); // 스크롤 취소
+      scrollHandler.cancel(); // throttle 취소
     }
   }, [currentPage, loading]);
 
