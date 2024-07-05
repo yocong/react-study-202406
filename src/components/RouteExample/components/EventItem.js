@@ -1,15 +1,36 @@
 import React from "react";
-import styles from './EventItem.module.scss';
-import { Link } from "react-router-dom";
+import styles from "./EventItem.module.scss";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const EventItem = ({ event }) => {
-  
   const {
+    'event-id': id,
     title,
     desc: description,
-    'img-url' : image,
-    'start-date' : date
+    "img-url": image,
+    "start-date": date,
   } = event;
+
+  // const { eventId:id } = useParams();
+
+  const navaigate = useNavigate();
+
+  const deleteHandler = (e) => {
+
+    if (!window.confirm('정말 삭제하시겠습니까?')) return;
+
+    console.log('id: ', id);
+    (async () => {
+      await fetch(`http://localhost:8282/events/${id}`, {
+        method: "DELETE",
+      });
+    })();
+
+    setTimeout(() => {
+      navaigate('/events');
+      
+    }, 200);
+  };
 
   return (
     <article className={styles.event}>
@@ -19,7 +40,7 @@ const EventItem = ({ event }) => {
       <p>{description}</p>
       <menu className={styles.actions}>
         <Link to="edit">Edit</Link>
-        <button>Delete</button>
+        <button onClick={deleteHandler}>Delete</button>
       </menu>
     </article>
   );
