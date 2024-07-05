@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './EventForm.module.scss';
-import { useNavigate, Form } from 'react-router-dom';
+import { useNavigate, Form, redirect } from 'react-router-dom';
 
 const EventForm = ({ method, event={} }) => {
 
