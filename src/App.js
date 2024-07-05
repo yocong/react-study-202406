@@ -12,7 +12,7 @@ import { action as manipulateAction } from './components/RouteExample/components
 
 // 라우터 설정
 const router = createBrowserRouter([
-  
+
   // path: '' -> index: true로 변경가능
   // :prodId -> ':' 붙으면 변동값
   {
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
           { 
             index: true,
             element: <Events/>,
-            loader: eventListLoader, // Events의 loader: 전체조회
+            // loader: eventListLoader, // Events의 loader: 전체조회
           },
           { 
             path: ':eventId',
