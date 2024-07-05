@@ -17,7 +17,7 @@ const EventItem = ({ event }) => {
 
   // const { eventId: id } = useParams();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
 
   const deleteHandler =  (e) => {
